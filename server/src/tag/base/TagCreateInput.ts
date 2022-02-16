@@ -11,20 +11,29 @@
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EnumTagClassName } from "./EnumTagClassName";
-import { IsEnum, ValidateNested } from "class-validator";
 import { PredictionWhereUniqueInput } from "../../prediction/base/PredictionWhereUniqueInput";
+import { ValidateNested, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
+import { EnumTagObservedValue } from "./EnumTagObservedValue";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TagCreateInput {
   @ApiProperty({
     required: true,
-    enum: EnumTagClassName,
+    type: () => PredictionWhereUniqueInput,
   })
-  @IsEnum(EnumTagClassName)
-  @Field(() => EnumTagClassName)
-  className!:
+  @ValidateNested()
+  @Type(() => PredictionWhereUniqueInput)
+  @Field(() => PredictionWhereUniqueInput)
+  image!: PredictionWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumTagObservedValue,
+  })
+  @IsEnum(EnumTagObservedValue)
+  @Field(() => EnumTagObservedValue)
+  observedValue!:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -38,15 +47,6 @@ class TagCreateInput {
     | "SmokeStack"
     | "Industrial_Plant"
     | "Crane";
-
-  @ApiProperty({
-    required: true,
-    type: () => PredictionWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => PredictionWhereUniqueInput)
-  @Field(() => PredictionWhereUniqueInput)
-  prediction!: PredictionWhereUniqueInput;
 
   @ApiProperty({
     required: true,

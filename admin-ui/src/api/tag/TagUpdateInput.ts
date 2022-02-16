@@ -2,7 +2,8 @@ import { PredictionWhereUniqueInput } from "../prediction/PredictionWhereUniqueI
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type TagUpdateInput = {
-  className?:
+  image?: PredictionWhereUniqueInput;
+  observedValue?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -16,6 +17,5 @@ export type TagUpdateInput = {
     | "SmokeStack"
     | "Industrial_Plant"
     | "Crane";
-  prediction?: PredictionWhereUniqueInput;
   user?: UserWhereUniqueInput;
 };

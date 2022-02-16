@@ -11,36 +11,13 @@
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EnumTagClassName } from "./EnumTagClassName";
-import { IsEnum, IsDate, IsString, ValidateNested } from "class-validator";
+import { IsDate, IsString, ValidateNested, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
 import { Prediction } from "../../prediction/base/Prediction";
+import { EnumTagObservedValue } from "./EnumTagObservedValue";
 import { User } from "../../user/base/User";
 @ObjectType()
 class Tag {
-  @ApiProperty({
-    required: true,
-    enum: EnumTagClassName,
-  })
-  @IsEnum(EnumTagClassName)
-  @Field(() => EnumTagClassName, {
-    nullable: true,
-  })
-  className?:
-    | "Pylon"
-    | "Tower"
-    | "Tank"
-    | "Building"
-    | "Building_Steeple"
-    | "Bridge"
-    | "Sign"
-    | "Windmill"
-    | "Storage_Structure"
-    | "Tank_WaterTower"
-    | "SmokeStack"
-    | "Industrial_Plant"
-    | "Crane";
-
   @ApiProperty({
     required: true,
   })
@@ -63,7 +40,30 @@ class Tag {
   })
   @ValidateNested()
   @Type(() => Prediction)
-  prediction?: Prediction;
+  image?: Prediction;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumTagObservedValue,
+  })
+  @IsEnum(EnumTagObservedValue)
+  @Field(() => EnumTagObservedValue, {
+    nullable: true,
+  })
+  observedValue?:
+    | "Pylon"
+    | "Tower"
+    | "Tank"
+    | "Building"
+    | "Building_Steeple"
+    | "Bridge"
+    | "Sign"
+    | "Windmill"
+    | "Storage_Structure"
+    | "Tank_WaterTower"
+    | "SmokeStack"
+    | "Industrial_Plant"
+    | "Crane";
 
   @ApiProperty({
     required: true,

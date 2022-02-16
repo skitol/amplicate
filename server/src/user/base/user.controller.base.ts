@@ -299,16 +299,16 @@ export class UserControllerBase {
     const results = await this.service.findTags(params.id, {
       ...query,
       select: {
-        className: true,
         createdAt: true,
         id: true,
 
-        prediction: {
+        image: {
           select: {
             id: true,
           },
         },
 
+        observedValue: true,
         updatedAt: true,
 
         user: {

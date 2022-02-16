@@ -2,7 +2,10 @@ import { Prediction } from "../prediction/Prediction";
 import { User } from "../user/User";
 
 export type Tag = {
-  className?:
+  createdAt: Date;
+  id: string;
+  image?: Prediction;
+  observedValue?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -16,9 +19,6 @@ export type Tag = {
     | "SmokeStack"
     | "Industrial_Plant"
     | "Crane";
-  createdAt: Date;
-  id: string;
-  prediction?: Prediction;
   updatedAt: Date;
   user?: User;
 };

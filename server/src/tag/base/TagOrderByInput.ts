@@ -25,15 +25,6 @@ class TagOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  className?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["Asc", "Desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   createdAt?: SortOrder;
 
   @ApiProperty({
@@ -52,7 +43,16 @@ class TagOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  predictionId?: SortOrder;
+  imageId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["Asc", "Desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  observedValue?: SortOrder;
 
   @ApiProperty({
     required: false,

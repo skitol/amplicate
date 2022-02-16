@@ -3,8 +3,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  SelectInput,
   ReferenceInput,
+  SelectInput,
 } from "react-admin";
 import { PredictionTitle } from "../prediction/PredictionTitle";
 import { UserTitle } from "../user/UserTitle";
@@ -13,9 +13,16 @@ export const TagEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <ReferenceInput
+          source="prediction.id"
+          reference="Prediction"
+          label="Image"
+        >
+          <SelectInput optionText={PredictionTitle} />
+        </ReferenceInput>
         <SelectInput
-          source="className"
-          label="ClassName"
+          source="observedValue"
+          label="Observed Value"
           choices={[
             { label: "PYLON", value: "Pylon" },
             { label: "TOWER", value: "Tower" },
@@ -34,13 +41,6 @@ export const TagEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <ReferenceInput
-          source="prediction.id"
-          reference="Prediction"
-          label="Prediction"
-        >
-          <SelectInput optionText={PredictionTitle} />
-        </ReferenceInput>
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>

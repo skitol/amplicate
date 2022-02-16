@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  TextField,
   DateField,
+  TextField,
   ReferenceField,
 } from "react-admin";
 import { PREDICTION_TITLE_FIELD } from "../prediction/PredictionTitle";
@@ -14,16 +14,16 @@ export const TagShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="ClassName" source="className" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <ReferenceField
-          label="Prediction"
+          label="Image"
           source="prediction.id"
           reference="Prediction"
         >
           <TextField source={PREDICTION_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Observed Value" source="observedValue" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
