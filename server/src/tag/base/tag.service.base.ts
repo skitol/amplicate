@@ -47,12 +47,12 @@ export class TagServiceBase {
     return this.prisma.tag.delete(args);
   }
 
-  async getImage(parentId: string): Promise<Prediction | null> {
+  async getPredictionId(parentId: string): Promise<Prediction | null> {
     return this.prisma.tag
       .findUnique({
         where: { id: parentId },
       })
-      .image();
+      .predictionId();
   }
 
   async getUser(parentId: string): Promise<User | null> {

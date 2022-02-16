@@ -4,8 +4,8 @@ import { User } from "../user/User";
 export type Tag = {
   createdAt: Date;
   id: string;
-  image?: Prediction;
-  observedValue?:
+  predictionId?: Prediction | null;
+  tagName?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -18,7 +18,8 @@ export type Tag = {
     | "Tank_WaterTower"
     | "SmokeStack"
     | "Industrial_Plant"
-    | "Crane";
+    | "Crane"
+    | null;
   updatedAt: Date;
   user?: User;
 };

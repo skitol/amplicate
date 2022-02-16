@@ -15,7 +15,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { PredictionWhereUniqueInput } from "../../prediction/base/PredictionWhereUniqueInput";
-import { EnumTagObservedValue } from "./EnumTagObservedValue";
+import { EnumTagTagName } from "./EnumTagTagName";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TagWhereInput {
@@ -40,18 +40,18 @@ class TagWhereInput {
   @Field(() => PredictionWhereUniqueInput, {
     nullable: true,
   })
-  image?: PredictionWhereUniqueInput;
+  predictionId?: PredictionWhereUniqueInput;
 
   @ApiProperty({
     required: false,
-    enum: EnumTagObservedValue,
+    enum: EnumTagTagName,
   })
-  @IsEnum(EnumTagObservedValue)
+  @IsEnum(EnumTagTagName)
   @IsOptional()
-  @Field(() => EnumTagObservedValue, {
+  @Field(() => EnumTagTagName, {
     nullable: true,
   })
-  observedValue?:
+  tagName?:
     | "Pylon"
     | "Tower"
     | "Tank"

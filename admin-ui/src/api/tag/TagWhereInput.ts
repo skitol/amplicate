@@ -4,8 +4,8 @@ import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type TagWhereInput = {
   id?: StringFilter;
-  image?: PredictionWhereUniqueInput;
-  observedValue?:
+  predictionId?: PredictionWhereUniqueInput;
+  tagName?:
     | "Pylon"
     | "Tower"
     | "Tank"

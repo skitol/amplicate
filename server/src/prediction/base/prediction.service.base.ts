@@ -47,11 +47,14 @@ export class PredictionServiceBase {
     return this.prisma.prediction.delete(args);
   }
 
-  async getTag(parentId: string): Promise<Tag | null> {
+  async findTags(
+    parentId: string,
+    args: Prisma.TagFindManyArgs
+  ): Promise<Tag[]> {
     return this.prisma.prediction
       .findUnique({
         where: { id: parentId },
       })
-      .tag();
+      .tags(args);
   }
 }

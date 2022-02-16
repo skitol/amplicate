@@ -302,13 +302,13 @@ export class UserControllerBase {
         createdAt: true,
         id: true,
 
-        image: {
+        predictionId: {
           select: {
             id: true,
           },
         },
 
-        observedValue: true,
+        tagName: true,
         updatedAt: true,
 
         user: {
