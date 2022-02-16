@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.11.2",
+  "appInfo": {
+    "name": "Rapid QA",
+    "description": "latLonPredictions",
+    "version": "jn7y7deo",
+    "id": "ckzplwlrr94017401s6appc93tn",
+    "url": "https://app.amplication.com/ckzplwlrr94017401s6appc93tn",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "",
+      "dbPassword": "secret",
+      "dbPort": 5432,
+      "dbUser": "admin",
+      "appId": "ckzplwlrr94017401s6appc93tn",
+      "authProvider": "Jwt"
+    }
+  }
+}
