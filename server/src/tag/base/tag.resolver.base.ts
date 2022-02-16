@@ -140,11 +140,9 @@ export class TagResolverBase {
           connect: args.data.prediction,
         },
 
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
+        user: {
+          connect: args.data.user,
+        },
       },
     });
   }
@@ -191,11 +189,9 @@ export class TagResolverBase {
             connect: args.data.prediction,
           },
 
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
+          user: {
+            connect: args.data.user,
+          },
         },
       });
     } catch (error) {

@@ -97,6 +97,15 @@ class PredictionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  tagId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["Asc", "Desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   tileName?: SortOrder;
 
   @ApiProperty({

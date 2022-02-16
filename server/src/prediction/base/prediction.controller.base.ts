@@ -27,8 +27,6 @@ import { PredictionWhereUniqueInput } from "./PredictionWhereUniqueInput";
 import { PredictionFindManyArgs } from "./PredictionFindManyArgs";
 import { PredictionUpdateInput } from "./PredictionUpdateInput";
 import { Prediction } from "./Prediction";
-import { TagFindManyArgs } from "../../tag/base/TagFindManyArgs";
-import { Tag } from "../../tag/base/Tag";
 @swagger.ApiBearerAuth()
 export class PredictionControllerBase {
   constructor(
@@ -72,7 +70,15 @@ export class PredictionControllerBase {
       );
     }
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        tag: data.tag
+          ? {
+              connect: data.tag,
+            }
+          : undefined,
+      },
       select: {
         className: true,
         createdAt: true,
@@ -82,6 +88,13 @@ export class PredictionControllerBase {
         lat: true,
         lon: true,
         score: true,
+
+        tag: {
+          select: {
+            id: true,
+          },
+        },
+
         tileName: true,
         updatedAt: true,
         x: true,
@@ -131,6 +144,13 @@ export class PredictionControllerBase {
         lat: true,
         lon: true,
         score: true,
+
+        tag: {
+          select: {
+            id: true,
+          },
+        },
+
         tileName: true,
         updatedAt: true,
         x: true,
@@ -179,6 +199,13 @@ export class PredictionControllerBase {
         lat: true,
         lon: true,
         score: true,
+
+        tag: {
+          select: {
+            id: true,
+          },
+        },
+
         tileName: true,
         updatedAt: true,
         x: true,
@@ -238,7 +265,15 @@ export class PredictionControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          tag: data.tag
+            ? {
+                connect: data.tag,
+              }
+            : undefined,
+        },
         select: {
           className: true,
           createdAt: true,
@@ -248,6 +283,13 @@ export class PredictionControllerBase {
           lat: true,
           lon: true,
           score: true,
+
+          tag: {
+            select: {
+              id: true,
+            },
+          },
+
           tileName: true,
           updatedAt: true,
           x: true,
@@ -297,6 +339,13 @@ export class PredictionControllerBase {
           lat: true,
           lon: true,
           score: true,
+
+          tag: {
+            select: {
+              id: true,
+            },
+          },
+
           tileName: true,
           updatedAt: true,
           x: true,
@@ -315,194 +364,5 @@ export class PredictionControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Get("/:id/tags")
-  @nestAccessControl.UseRoles({
-    resource: "Prediction",
-    action: "read",
-    possession: "any",
-  })
-  @ApiNestedQuery(TagFindManyArgs)
-  async findManyTags(
-    @common.Req() request: Request,
-    @common.Param() params: PredictionWhereUniqueInput,
-    @nestAccessControl.UserRoles() userRoles: string[]
-  ): Promise<Tag[]> {
-    const query = plainToClass(TagFindManyArgs, request.query);
-    const permission = this.rolesBuilder.permission({
-      role: userRoles,
-      action: "read",
-      possession: "any",
-      resource: "Tag",
-    });
-    const results = await this.service.findTags(params.id, {
-      ...query,
-      select: {
-        className: true,
-        createdAt: true,
-        id: true,
-
-        prediction: {
-          select: {
-            id: true,
-          },
-        },
-
-        updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results.map((result) => permission.filter(result));
-  }
-
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Post("/:id/tags")
-  @nestAccessControl.UseRoles({
-    resource: "Prediction",
-    action: "update",
-    possession: "any",
-  })
-  async createTags(
-    @common.Param() params: PredictionWhereUniqueInput,
-    @common.Body() body: PredictionWhereUniqueInput[],
-    @nestAccessControl.UserRoles() userRoles: string[]
-  ): Promise<void> {
-    const data = {
-      tags: {
-        connect: body,
-      },
-    };
-    const permission = this.rolesBuilder.permission({
-      role: userRoles,
-      action: "update",
-      possession: "any",
-      resource: "Prediction",
-    });
-    const invalidAttributes = abacUtil.getInvalidAttributes(permission, data);
-    if (invalidAttributes.length) {
-      const roles = userRoles
-        .map((role: string) => JSON.stringify(role))
-        .join(",");
-      throw new common.ForbiddenException(
-        `Updating the relationship: ${
-          invalidAttributes[0]
-        } of ${"Prediction"} is forbidden for roles: ${roles}`
-      );
-    }
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Patch("/:id/tags")
-  @nestAccessControl.UseRoles({
-    resource: "Prediction",
-    action: "update",
-    possession: "any",
-  })
-  async updateTags(
-    @common.Param() params: PredictionWhereUniqueInput,
-    @common.Body() body: PredictionWhereUniqueInput[],
-    @nestAccessControl.UserRoles() userRoles: string[]
-  ): Promise<void> {
-    const data = {
-      tags: {
-        set: body,
-      },
-    };
-    const permission = this.rolesBuilder.permission({
-      role: userRoles,
-      action: "update",
-      possession: "any",
-      resource: "Prediction",
-    });
-    const invalidAttributes = abacUtil.getInvalidAttributes(permission, data);
-    if (invalidAttributes.length) {
-      const roles = userRoles
-        .map((role: string) => JSON.stringify(role))
-        .join(",");
-      throw new common.ForbiddenException(
-        `Updating the relationship: ${
-          invalidAttributes[0]
-        } of ${"Prediction"} is forbidden for roles: ${roles}`
-      );
-    }
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Delete("/:id/tags")
-  @nestAccessControl.UseRoles({
-    resource: "Prediction",
-    action: "update",
-    possession: "any",
-  })
-  async deleteTags(
-    @common.Param() params: PredictionWhereUniqueInput,
-    @common.Body() body: PredictionWhereUniqueInput[],
-    @nestAccessControl.UserRoles() userRoles: string[]
-  ): Promise<void> {
-    const data = {
-      tags: {
-        disconnect: body,
-      },
-    };
-    const permission = this.rolesBuilder.permission({
-      role: userRoles,
-      action: "update",
-      possession: "any",
-      resource: "Prediction",
-    });
-    const invalidAttributes = abacUtil.getInvalidAttributes(permission, data);
-    if (invalidAttributes.length) {
-      const roles = userRoles
-        .map((role: string) => JSON.stringify(role))
-        .join(",");
-      throw new common.ForbiddenException(
-        `Updating the relationship: ${
-          invalidAttributes[0]
-        } of ${"Prediction"} is forbidden for roles: ${roles}`
-      );
-    }
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

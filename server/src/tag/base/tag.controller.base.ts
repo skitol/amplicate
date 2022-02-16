@@ -77,11 +77,9 @@ export class TagControllerBase {
           connect: data.prediction,
         },
 
-        user: data.user
-          ? {
-              connect: data.user,
-            }
-          : undefined,
+        user: {
+          connect: data.user,
+        },
       },
       select: {
         className: true,
@@ -258,11 +256,9 @@ export class TagControllerBase {
             connect: data.prediction,
           },
 
-          user: data.user
-            ? {
-                connect: data.user,
-              }
-            : undefined,
+          user: {
+            connect: data.user,
+          },
         },
         select: {
           className: true,

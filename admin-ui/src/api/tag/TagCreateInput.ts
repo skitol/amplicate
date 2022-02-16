@@ -17,5 +17,5 @@ export type TagCreateInput = {
     | "Industrial_Plant"
     | "Crane";
   prediction: PredictionWhereUniqueInput;
-  user?: UserWhereUniqueInput | null;
+  user: UserWhereUniqueInput;
 };

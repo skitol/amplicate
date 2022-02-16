@@ -9,7 +9,7 @@ export type Prediction = {
   lat: number | null;
   lon: number | null;
   score: number | null;
-  tags?: Array<Tag>;
+  tag?: Tag | null;
   tileName: string | null;
   updatedAt: Date;
   x: number | null;
