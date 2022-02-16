@@ -106,12 +106,12 @@ class Prediction {
 
   @ApiProperty({
     required: false,
-    type: () => [Tag],
+    type: () => Tag,
   })
   @ValidateNested()
   @Type(() => Tag)
   @IsOptional()
-  tags?: Array<Tag>;
+  tag?: Tag | null;
 
   @ApiProperty({
     required: false,

@@ -1,6 +1,14 @@
 import * as React from "react";
-import { List, Datagrid, ListProps, TextField, DateField } from "react-admin";
+import {
+  List,
+  Datagrid,
+  ListProps,
+  TextField,
+  DateField,
+  ReferenceField,
+} from "react-admin";
 import Pagination from "../Components/Pagination";
+import { TAG_TITLE_FIELD } from "../tag/TagTitle";
 
 export const PredictionList = (props: ListProps): React.ReactElement => {
   return (
@@ -20,6 +28,9 @@ export const PredictionList = (props: ListProps): React.ReactElement => {
         <TextField label="lat" source="lat" />
         <TextField label="lon" source="lon" />
         <TextField label="score" source="score" />
+        <ReferenceField label="tag" source="tag.id" reference="Tag">
+          <TextField source={TAG_TITLE_FIELD} />
+        </ReferenceField>
         <TextField label="tileName" source="tileName" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="x" source="x" />

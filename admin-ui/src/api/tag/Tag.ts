@@ -20,5 +20,5 @@ export type Tag = {
   id: string;
   prediction?: Prediction;
   updatedAt: Date;
-  user?: User | null;
+  user?: User;
 };

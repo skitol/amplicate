@@ -1,3 +1,5 @@
+import { TagWhereUniqueInput } from "../tag/TagWhereUniqueInput";
+
 export type PredictionCreateInput = {
   className?: string | null;
   geometry?: string | null;
@@ -5,6 +7,7 @@ export type PredictionCreateInput = {
   lat?: number | null;
   lon?: number | null;
   score?: number | null;
+  tag?: TagWhereUniqueInput | null;
   tileName?: string | null;
   x?: number | null;
   xmax1?: number | null;

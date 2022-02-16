@@ -12,13 +12,7 @@
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EnumTagClassName } from "./EnumTagClassName";
-import {
-  IsEnum,
-  IsDate,
-  IsString,
-  ValidateNested,
-  IsOptional,
-} from "class-validator";
+import { IsEnum, IsDate, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { Prediction } from "../../prediction/base/Prediction";
 import { User } from "../../user/base/User";
@@ -80,12 +74,11 @@ class Tag {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
-  @IsOptional()
-  user?: User | null;
+  user?: User;
 }
 export { Tag };

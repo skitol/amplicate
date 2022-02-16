@@ -9,6 +9,7 @@ export type PredictionOrderByInput = {
   lat?: SortOrder;
   lon?: SortOrder;
   score?: SortOrder;
+  tagId?: SortOrder;
   tileName?: SortOrder;
   updatedAt?: SortOrder;
   x?: SortOrder;

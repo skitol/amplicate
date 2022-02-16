@@ -12,7 +12,7 @@
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EnumTagClassName } from "./EnumTagClassName";
-import { IsEnum, ValidateNested, IsOptional } from "class-validator";
+import { IsEnum, ValidateNested } from "class-validator";
 import { PredictionWhereUniqueInput } from "../../prediction/base/PredictionWhereUniqueInput";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
@@ -49,15 +49,12 @@ class TagCreateInput {
   prediction!: PredictionWhereUniqueInput;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput | null;
+  @Field(() => UserWhereUniqueInput)
+  user!: UserWhereUniqueInput;
 }
 export { TagCreateInput };

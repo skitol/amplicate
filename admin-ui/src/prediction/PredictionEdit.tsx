@@ -1,11 +1,16 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
   EditProps,
   TextInput,
   NumberInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
+
+import { TagTitle } from "../tag/TagTitle";
 
 export const PredictionEdit = (props: EditProps): React.ReactElement => {
   return (
@@ -17,6 +22,9 @@ export const PredictionEdit = (props: EditProps): React.ReactElement => {
         <NumberInput label="lat" source="lat" />
         <NumberInput label="lon" source="lon" />
         <NumberInput label="score" source="score" />
+        <ReferenceInput source="tag.id" reference="Tag" label="tag">
+          <SelectInput optionText={TagTitle} />
+        </ReferenceInput>
         <TextInput label="tileName" source="tileName" />
         <NumberInput label="x" source="x" />
         <NumberInput label="xmax1" source="xmax1" />
