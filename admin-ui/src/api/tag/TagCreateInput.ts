@@ -2,8 +2,8 @@ import { PredictionWhereUniqueInput } from "../prediction/PredictionWhereUniqueI
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type TagCreateInput = {
-  image: PredictionWhereUniqueInput;
-  observedValue:
+  predictionId?: PredictionWhereUniqueInput | null;
+  tagName?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -16,6 +16,7 @@ export type TagCreateInput = {
     | "Tank_WaterTower"
     | "SmokeStack"
     | "Industrial_Plant"
-    | "Crane";
+    | "Crane"
+    | null;
   user: UserWhereUniqueInput;
 };

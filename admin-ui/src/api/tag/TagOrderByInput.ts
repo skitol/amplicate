@@ -3,8 +3,8 @@ import { SortOrder } from "../../util/SortOrder";
 export type TagOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
-  imageId?: SortOrder;
-  observedValue?: SortOrder;
+  predictionIdId?: SortOrder;
+  tagName?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;
 };

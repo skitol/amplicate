@@ -16,13 +16,13 @@ export const TagEdit = (props: EditProps): React.ReactElement => {
         <ReferenceInput
           source="prediction.id"
           reference="Prediction"
-          label="Image"
+          label="Prediction Id"
         >
           <SelectInput optionText={PredictionTitle} />
         </ReferenceInput>
         <SelectInput
-          source="observedValue"
-          label="Observed Value"
+          source="tagName"
+          label="Tag Name"
           choices={[
             { label: "PYLON", value: "Pylon" },
             { label: "TOWER", value: "Tower" },
@@ -39,6 +39,7 @@ export const TagEdit = (props: EditProps): React.ReactElement => {
             { label: "CRANE", value: "Crane" },
           ]}
           optionText="label"
+          allowEmpty
           optionValue="value"
         />
         <ReferenceInput source="user.id" reference="User" label="User">

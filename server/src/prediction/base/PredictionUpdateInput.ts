@@ -11,14 +11,7 @@
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsNumber,
-  ValidateNested,
-} from "class-validator";
-import { TagWhereUniqueInput } from "../../tag/base/TagWhereUniqueInput";
-import { Type } from "class-transformer";
+import { IsString, IsOptional, IsNumber } from "class-validator";
 @InputType()
 class PredictionUpdateInput {
   @ApiProperty({
@@ -86,18 +79,6 @@ class PredictionUpdateInput {
     nullable: true,
   })
   score?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => TagWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => TagWhereUniqueInput)
-  @IsOptional()
-  @Field(() => TagWhereUniqueInput, {
-    nullable: true,
-  })
-  tag?: TagWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

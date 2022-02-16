@@ -11,10 +11,16 @@
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, ValidateNested, IsEnum } from "class-validator";
+import {
+  IsDate,
+  IsString,
+  ValidateNested,
+  IsOptional,
+  IsEnum,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { Prediction } from "../../prediction/base/Prediction";
-import { EnumTagObservedValue } from "./EnumTagObservedValue";
+import { EnumTagTagName } from "./EnumTagTagName";
 import { User } from "../../user/base/User";
 @ObjectType()
 class Tag {
@@ -35,22 +41,24 @@ class Tag {
   id!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => Prediction,
   })
   @ValidateNested()
   @Type(() => Prediction)
-  image?: Prediction;
+  @IsOptional()
+  predictionId?: Prediction | null;
 
   @ApiProperty({
-    required: true,
-    enum: EnumTagObservedValue,
+    required: false,
+    enum: EnumTagTagName,
   })
-  @IsEnum(EnumTagObservedValue)
-  @Field(() => EnumTagObservedValue, {
+  @IsEnum(EnumTagTagName)
+  @IsOptional()
+  @Field(() => EnumTagTagName, {
     nullable: true,
   })
-  observedValue?:
+  tagName?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -63,7 +71,8 @@ class Tag {
     | "Tank_WaterTower"
     | "SmokeStack"
     | "Industrial_Plant"
-    | "Crane";
+    | "Crane"
+    | null;
 
   @ApiProperty({
     required: true,

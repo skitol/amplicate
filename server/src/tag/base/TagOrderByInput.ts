@@ -43,7 +43,7 @@ class TagOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  imageId?: SortOrder;
+  predictionIdId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -52,7 +52,7 @@ class TagOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  observedValue?: SortOrder;
+  tagName?: SortOrder;
 
   @ApiProperty({
     required: false,

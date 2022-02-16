@@ -1,16 +1,11 @@
 import * as React from "react";
-
 import {
   Create,
   SimpleForm,
   CreateProps,
   TextInput,
   NumberInput,
-  ReferenceInput,
-  SelectInput,
 } from "react-admin";
-
-import { TagTitle } from "../tag/TagTitle";
 
 export const PredictionCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -22,9 +17,6 @@ export const PredictionCreate = (props: CreateProps): React.ReactElement => {
         <NumberInput label="lat" source="lat" />
         <NumberInput label="lon" source="lon" />
         <NumberInput label="score" source="score" />
-        <ReferenceInput source="tag.id" reference="Tag" label="tag">
-          <SelectInput optionText={TagTitle} />
-        </ReferenceInput>
         <TextInput label="tileName" source="tileName" />
         <NumberInput label="x" source="x" />
         <NumberInput label="xmax1" source="xmax1" />

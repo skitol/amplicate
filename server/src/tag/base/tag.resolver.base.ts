@@ -136,9 +136,11 @@ export class TagResolverBase {
       data: {
         ...args.data,
 
-        image: {
-          connect: args.data.image,
-        },
+        predictionId: args.data.predictionId
+          ? {
+              connect: args.data.predictionId,
+            }
+          : undefined,
 
         user: {
           connect: args.data.user,
@@ -185,9 +187,11 @@ export class TagResolverBase {
         data: {
           ...args.data,
 
-          image: {
-            connect: args.data.image,
-          },
+          predictionId: args.data.predictionId
+            ? {
+                connect: args.data.predictionId,
+              }
+            : undefined,
 
           user: {
             connect: args.data.user,
@@ -230,7 +234,7 @@ export class TagResolverBase {
     action: "read",
     possession: "any",
   })
-  async image(
+  async predictionId(
     @graphql.Parent() parent: Tag,
     @gqlUserRoles.UserRoles() userRoles: string[]
   ): Promise<Prediction | null> {
@@ -240,7 +244,7 @@ export class TagResolverBase {
       possession: "any",
       resource: "Prediction",
     });
-    const result = await this.service.getImage(parent.id);
+    const result = await this.service.getPredictionId(parent.id);
 
     if (!result) {
       return null;

@@ -1,13 +1,18 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
   ShowProps,
   TextField,
   DateField,
+  ReferenceManyField,
+  Datagrid,
   ReferenceField,
 } from "react-admin";
-import { TAG_TITLE_FIELD } from "../tag/TagTitle";
+
+import { PREDICTION_TITLE_FIELD } from "./PredictionTitle";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const PredictionShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -21,9 +26,6 @@ export const PredictionShow = (props: ShowProps): React.ReactElement => {
         <TextField label="lat" source="lat" />
         <TextField label="lon" source="lon" />
         <TextField label="score" source="score" />
-        <ReferenceField label="tag" source="tag.id" reference="Tag">
-          <TextField source={TAG_TITLE_FIELD} />
-        </ReferenceField>
         <TextField label="tileName" source="tileName" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="x" source="x" />
@@ -32,6 +34,24 @@ export const PredictionShow = (props: ShowProps): React.ReactElement => {
         <TextField label="y" source="y" />
         <TextField label="ymax" source="ymax" />
         <TextField label="ymin" source="ymin" />
+        <ReferenceManyField reference="Tag" target="PredictionId" label="Tags">
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="ID" source="id" />
+            <ReferenceField
+              label="Prediction Id"
+              source="prediction.id"
+              reference="Prediction"
+            >
+              <TextField source={PREDICTION_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="Tag Name" source="tagName" />
+            <DateField source="updatedAt" label="Updated At" />
+            <ReferenceField label="User" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );

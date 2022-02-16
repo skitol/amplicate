@@ -24,13 +24,13 @@ export const TagList = (props: ListProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <ReferenceField
-          label="Image"
+          label="Prediction Id"
           source="prediction.id"
           reference="Prediction"
         >
           <TextField source={PREDICTION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Observed Value" source="observedValue" />
+        <TextField label="Tag Name" source="tagName" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />

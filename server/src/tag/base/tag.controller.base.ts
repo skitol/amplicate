@@ -73,9 +73,11 @@ export class TagControllerBase {
       data: {
         ...data,
 
-        image: {
-          connect: data.image,
-        },
+        predictionId: data.predictionId
+          ? {
+              connect: data.predictionId,
+            }
+          : undefined,
 
         user: {
           connect: data.user,
@@ -85,13 +87,13 @@ export class TagControllerBase {
         createdAt: true,
         id: true,
 
-        image: {
+        predictionId: {
           select: {
             id: true,
           },
         },
 
-        observedValue: true,
+        tagName: true,
         updatedAt: true,
 
         user: {
@@ -135,13 +137,13 @@ export class TagControllerBase {
         createdAt: true,
         id: true,
 
-        image: {
+        predictionId: {
           select: {
             id: true,
           },
         },
 
-        observedValue: true,
+        tagName: true,
         updatedAt: true,
 
         user: {
@@ -184,13 +186,13 @@ export class TagControllerBase {
         createdAt: true,
         id: true,
 
-        image: {
+        predictionId: {
           select: {
             id: true,
           },
         },
 
-        observedValue: true,
+        tagName: true,
         updatedAt: true,
 
         user: {
@@ -252,9 +254,11 @@ export class TagControllerBase {
         data: {
           ...data,
 
-          image: {
-            connect: data.image,
-          },
+          predictionId: data.predictionId
+            ? {
+                connect: data.predictionId,
+              }
+            : undefined,
 
           user: {
             connect: data.user,
@@ -264,13 +268,13 @@ export class TagControllerBase {
           createdAt: true,
           id: true,
 
-          image: {
+          predictionId: {
             select: {
               id: true,
             },
           },
 
-          observedValue: true,
+          tagName: true,
           updatedAt: true,
 
           user: {
@@ -314,13 +318,13 @@ export class TagControllerBase {
           createdAt: true,
           id: true,
 
-          image: {
+          predictionId: {
             select: {
               id: true,
             },
           },
 
-          observedValue: true,
+          tagName: true,
           updatedAt: true,
 
           user: {

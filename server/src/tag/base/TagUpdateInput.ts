@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { PredictionWhereUniqueInput } from "../../prediction/base/PredictionWhereUniqueInput";
 import { ValidateNested, IsOptional, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
-import { EnumTagObservedValue } from "./EnumTagObservedValue";
+import { EnumTagTagName } from "./EnumTagTagName";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TagUpdateInput {
@@ -28,18 +28,18 @@ class TagUpdateInput {
   @Field(() => PredictionWhereUniqueInput, {
     nullable: true,
   })
-  image?: PredictionWhereUniqueInput;
+  predictionId?: PredictionWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
-    enum: EnumTagObservedValue,
+    enum: EnumTagTagName,
   })
-  @IsEnum(EnumTagObservedValue)
+  @IsEnum(EnumTagTagName)
   @IsOptional()
-  @Field(() => EnumTagObservedValue, {
+  @Field(() => EnumTagTagName, {
     nullable: true,
   })
-  observedValue?:
+  tagName?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -52,7 +52,8 @@ class TagUpdateInput {
     | "Tank_WaterTower"
     | "SmokeStack"
     | "Industrial_Plant"
-    | "Crane";
+    | "Crane"
+    | null;
 
   @ApiProperty({
     required: false,
