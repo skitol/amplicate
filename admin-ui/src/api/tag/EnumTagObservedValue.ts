@@ -1,0 +1,15 @@
+export enum EnumTagObservedValue {
+  Pylon = "Pylon",
+  Tower = "Tower",
+  Tank = "Tank",
+  Building = "Building",
+  BuildingSteeple = "Building_Steeple",
+  Bridge = "Bridge",
+  Sign = "Sign",
+  Windmill = "Windmill",
+  StorageStructure = "Storage_Structure",
+  TankWatertower = "Tank_WaterTower",
+  Smokestack = "SmokeStack",
+  IndustrialPlant = "Industrial_Plant",
+  Crane = "Crane",
+}

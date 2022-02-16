@@ -73,8 +73,8 @@ export class TagControllerBase {
       data: {
         ...data,
 
-        prediction: {
-          connect: data.prediction,
+        image: {
+          connect: data.image,
         },
 
         user: {
@@ -82,16 +82,16 @@ export class TagControllerBase {
         },
       },
       select: {
-        className: true,
         createdAt: true,
         id: true,
 
-        prediction: {
+        image: {
           select: {
             id: true,
           },
         },
 
+        observedValue: true,
         updatedAt: true,
 
         user: {
@@ -132,16 +132,16 @@ export class TagControllerBase {
     const results = await this.service.findMany({
       ...args,
       select: {
-        className: true,
         createdAt: true,
         id: true,
 
-        prediction: {
+        image: {
           select: {
             id: true,
           },
         },
 
+        observedValue: true,
         updatedAt: true,
 
         user: {
@@ -181,16 +181,16 @@ export class TagControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        className: true,
         createdAt: true,
         id: true,
 
-        prediction: {
+        image: {
           select: {
             id: true,
           },
         },
 
+        observedValue: true,
         updatedAt: true,
 
         user: {
@@ -252,8 +252,8 @@ export class TagControllerBase {
         data: {
           ...data,
 
-          prediction: {
-            connect: data.prediction,
+          image: {
+            connect: data.image,
           },
 
           user: {
@@ -261,16 +261,16 @@ export class TagControllerBase {
           },
         },
         select: {
-          className: true,
           createdAt: true,
           id: true,
 
-          prediction: {
+          image: {
             select: {
               id: true,
             },
           },
 
+          observedValue: true,
           updatedAt: true,
 
           user: {
@@ -311,16 +311,16 @@ export class TagControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          className: true,
           createdAt: true,
           id: true,
 
-          prediction: {
+          image: {
             select: {
               id: true,
             },
           },
 
+          observedValue: true,
           updatedAt: true,
 
           user: {

@@ -11,23 +11,35 @@
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EnumTagClassName } from "./EnumTagClassName";
-import { IsEnum, IsOptional, ValidateNested } from "class-validator";
 import { PredictionWhereUniqueInput } from "../../prediction/base/PredictionWhereUniqueInput";
+import { ValidateNested, IsOptional, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
+import { EnumTagObservedValue } from "./EnumTagObservedValue";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TagUpdateInput {
   @ApiProperty({
     required: false,
-    enum: EnumTagClassName,
+    type: () => PredictionWhereUniqueInput,
   })
-  @IsEnum(EnumTagClassName)
+  @ValidateNested()
+  @Type(() => PredictionWhereUniqueInput)
   @IsOptional()
-  @Field(() => EnumTagClassName, {
+  @Field(() => PredictionWhereUniqueInput, {
     nullable: true,
   })
-  className?:
+  image?: PredictionWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumTagObservedValue,
+  })
+  @IsEnum(EnumTagObservedValue)
+  @IsOptional()
+  @Field(() => EnumTagObservedValue, {
+    nullable: true,
+  })
+  observedValue?:
     | "Pylon"
     | "Tower"
     | "Tank"
@@ -41,18 +53,6 @@ class TagUpdateInput {
     | "SmokeStack"
     | "Industrial_Plant"
     | "Crane";
-
-  @ApiProperty({
-    required: false,
-    type: () => PredictionWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => PredictionWhereUniqueInput)
-  @IsOptional()
-  @Field(() => PredictionWhereUniqueInput, {
-    nullable: true,
-  })
-  prediction?: PredictionWhereUniqueInput;
 
   @ApiProperty({
     required: false,
